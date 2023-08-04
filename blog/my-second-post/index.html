@@ -39,14 +39,18 @@ if (!doNotTrack) {
 }
 </script>
 
-<meta property="og:title" content="Tags" />
-<meta property="og:description" content="Text about my cool site" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://jeancarlor.github.io/tags/" /><meta property="og:site_name" content="home" />
+<meta property="og:title" content="My Second Post" />
+<meta property="og:description" content="The main consideration is to make sure that the reference resource matches the genomic build of your VCF. i.e. make sure you are using GRCh37 resources for a GRCh37 aligned VCF, or GRCh38 resources for a GRCh38 aligned VCF.
+dbSNP A vcf from dbSNP can be used to annotate rsIDs into the ID column of a vcf. For instance the dbSNP v151 VCF can be downloaded here ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/ - one key thing is make sure that you use the same genome build as your VCF that you want to annotate." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jeancarlor.github.io/blog/my-second-post/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-08-14T19:18:23-03:00" />
+<meta property="article:modified_time" content="2022-08-14T19:18:23-03:00" /><meta property="og:site_name" content="home" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tags"/>
-<meta name="twitter:description" content="Text about my cool site"/>
+<meta name="twitter:title" content="My Second Post"/>
+<meta name="twitter:description" content="The main consideration is to make sure that the reference resource matches the genomic build of your VCF. i.e. make sure you are using GRCh37 resources for a GRCh37 aligned VCF, or GRCh38 resources for a GRCh38 aligned VCF.
+dbSNP A vcf from dbSNP can be used to annotate rsIDs into the ID column of a vcf. For instance the dbSNP v151 VCF can be downloaded here ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/ - one key thing is make sure that you use the same genome build as your VCF that you want to annotate."/>
 
 
 <link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
@@ -110,11 +114,14 @@ if (!doNotTrack) {
     }
 </style>
 
-<meta name="description" content="Tags of from hell to shell">
-<link rel="stylesheet" href="/css/list.css" media="all">
+<meta name="description" content="">
+<link rel="stylesheet" href="/css/single.css">
+
+
+<script defer src="/fontawesome-5/all-5.15.4.js"></script>
 
   <title>
-Tags | from hell to shell
+My Second Post | from hell to shell
 
   </title>
 </head>
@@ -235,17 +242,164 @@ Tags | from hell to shell
     </nav>
 </header>
 <div id="content">
-<div class="container pt-5" id="list-page">
-    <h2 class="text-center pb-2">Tags</h2>
-    <div class="row">
-        
-        <div class="row justify-content-center">
-            <div class="col-auto m-3">
-                
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          <div class="title mb-5">
+            <h1 class="text-center mb-4">My Second Post</h1>
+            <div class="text-center">
+               
+              <small>|</small>
+              Aug 14, 2022
+
+              
+              <span id="readingTime">
+                min read
+              </span>
+              
             </div>
+          </div>
+          
+          <article class="page-content  p-2">
+          <p>The main consideration is to make sure that the reference resource matches the genomic build of your VCF. i.e. make sure you are using GRCh37 resources for a GRCh37 aligned VCF, or GRCh38 resources for a GRCh38 aligned VCF.</p>
+<h2 id="dbsnp">dbSNP</h2>
+<p>A vcf from dbSNP can be used to annotate rsIDs into the ID column of a vcf. For instance the dbSNP v151 VCF can be downloaded here <a href="ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/">ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/</a> - one key thing is make sure that you use the same genome build as your VCF that you want to annotate.</p>
+<p>Once you have a copy (Merrimanlab can find it in <code>/Volumes/archive/merrimanlab/reference_files/VCF/dbSNP_reference/dbsnp151_GRCh37/dbsnp_151_20180423.vcf.gz</code>)</p>
+<p>Then to annotate using bcftools</p>
+<pre tabindex="0"><code># use on the server
+module load bcftools/bcftools-1.11
+
+bcftools annotate -a dbsnp_151_20180423.vcf.gz -c ID -o myvcf.dbsnp_annotated.vcf.gz -O z myvcf.vcf.gz
+</code></pre><h2 id="dbnsfp">dbNSFP</h2>
+<h3 id="creation-of-latest-dbnsfp">Creation of latest dbNSFP</h3>
+<p><a href="https://sites.google.com/site/jpopgen/dbNSFP">https://sites.google.com/site/jpopgen/dbNSFP</a></p>
+<pre tabindex="0"><code>wget ftp://dbnsfp:dbnsfp@dbnsfp.softgenetics.com/dbNSFP4.0a.zip
+unzip dbNSFP4.0a.zip
+</code></pre><p>The file has GRCh38 coordinates as the default, so to change them you need this perl script <a href="https://raw.githubusercontent.com/pcingola/SnpEff/master/scripts_build/dbNSFP_sort.pl">dbNSFP_sort.pl</a> and the GRCh37 coordinates are columns 8 and 9, but the script is zero indexed hence using 7 and 8 as the column numbers.</p>
+<pre tabindex="0"><code># Set to your downloaded dbNSFP version
+version=&#34;4.0a&#34;
+
+# Replace coordinates by columns 7 and 8 (hg19 coordinates) and sort by those coordinates
+zcat dbNSFP${version}_variant.chr*.gz | dbNSFP_sort.pl 7 8 &gt; dbNSFP4.0a_hg19.txt
+
+# Compress and index
+bgzip dbNSFP${version}_hg19.txt
+tabix -s 1 -b 2 -e 2 dbNSFP${version}_hg19.txt.gz
+</code></pre><p>Once this annotation file is created it can be used to annotate VCF files using <code>SnpSift</code>.</p>
+<p>For Merrimanlab, a version is available at <code>/Volumes/archive/merrimanlab/reference_files/dbNSFP/dbNSFP4.0a/dbNSFP4.0a_hg19.txt.gz</code></p>
+<h3 id="annotate">Annotate</h3>
+<p>Make sure to check out the readme that came with dbNSFP for an idea of the annotations that are available (<code>/Volumes/archive/merrimanlab/reference_files/dbNSFP/dbNSFP4.0a/dbNSFP4.0a.readme.txt</code>).</p>
+<p>To perform the annotation, we use <code>SnpSift</code> which comes as part of <code>snpEff</code>.</p>
+<pre tabindex="0"><code>module load snpEff/snpEff_4.3t
+
+java -jar $SNPSIFT dbnsfp -db dbNSFP4.0a_hg19.txt.gz -f $(zcat /Volumes/archive/merrimanlab/reference_files/dbNSFP/dbNSFP4.0a/dbNSFP4.0a_hg19.txt.gz | head -1 | tr &#34;\t&#34; &#34;\n&#34; | grep -v &#34;hg18\|hg19\|Geuvadis_eQTL_target_gene&#34; | sed -n 5,&#34;$&#34;p | tr &#34;\n&#34; &#34;\,&#34; |sed &#34;s/,$//g&#34;) myvcf.vcf.gz | bgzip -c &gt; myvcf.dbnsfp.vcf.gz
+</code></pre><h2 id="effect-predictors">Effect predictors</h2>
+<h3 id="snpeff">snpEff</h3>
+<pre tabindex="0"><code>module load snpEff/snpEff_4.3t
+java -jar $SNPEFF GRCh37.75 -stats myvcf_stats.html -lof -csvStats myvcf_stats.csv myvcf.vcf.gz &gt; myvcf.ann.vcf
+</code></pre>
+          </article>
         </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div class="sticky-sidebar">
+          
+          <aside class="toc">
+              <h5>
+                Table Of Contents
+              </h5>
+              <div class="toc-content">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#dbsnp">dbSNP</a></li>
+    <li><a href="#dbnsfp">dbNSFP</a>
+      <ul>
+        <li><a href="#creation-of-latest-dbnsfp">Creation of latest dbNSFP</a></li>
+        <li><a href="#annotate">Annotate</a></li>
+      </ul>
+    </li>
+    <li><a href="#effect-predictors">Effect predictors</a>
+      <ul>
+        <li><a href="#snpeff">snpEff</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+              </div>
+          </aside>
+          
+
+          
+
+          
+          <aside class="social">
+            <h5>Social</h5>
+            <div class="social-content">
+              <ul class="list-inline">
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://twitter.com/share?text=My%20Second%20Post&url=https%3a%2f%2fjeancarlor.github.io%2fblog%2fmy-second-post%2f">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://api.whatsapp.com/send?text=My%20Second%20Post: https%3a%2f%2fjeancarlor.github.io%2fblog%2fmy-second-post%2f">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href='mailto:?subject=My%20Second%20Post&amp;body=Check%20out%20this%20site https%3a%2f%2fjeancarlor.github.io%2fblog%2fmy-second-post%2f'>
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          
+        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        
+      </div>
+    </div>
+  </div>
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+
+<div class="progress">
+  <div id="scroll-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+<Script src="/js/scrollProgressBar.js"></script>
+
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+
+
+<script src="/js/readingTime.js"></script>
+
+
 
   </div><footer>
     <div class="container py-3" id="recent-posts">
