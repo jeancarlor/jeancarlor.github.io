@@ -5,38 +5,7 @@
     <link>https://jeancarlor.github.io/</link>
     <description>Recent content on from hell to shell</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 22 Mar 2023 15:11:32 -0300</lastBuildDate><atom:link href="https://jeancarlor.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>My First Post</title>
-      <link>https://jeancarlor.github.io/gallery/my-first-post/</link>
-      <pubDate>Wed, 22 Mar 2023 15:11:32 -0300</pubDate>
-      
-      <guid>https://jeancarlor.github.io/gallery/my-first-post/</guid>
-      <description>Introduction This is bold text, and this is emphasized text.
-Visit the Hugo website!</description>
-    </item>
-    
-    <item>
-      <title>My Second Post</title>
-      <link>https://jeancarlor.github.io/blog/my-second-post/</link>
-      <pubDate>Sun, 14 Aug 2022 19:18:23 -0300</pubDate>
-      
-      <guid>https://jeancarlor.github.io/blog/my-second-post/</guid>
-      <description>The main consideration is to make sure that the reference resource matches the genomic build of your VCF. i.e. make sure you are using GRCh37 resources for a GRCh37 aligned VCF, or GRCh38 resources for a GRCh38 aligned VCF.
-dbSNP A vcf from dbSNP can be used to annotate rsIDs into the ID column of a vcf. For instance the dbSNP v151 VCF can be downloaded here ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/ - one key thing is make sure that you use the same genome build as your VCF that you want to annotate.</description>
-    </item>
-    
-    <item>
-      <title>Retirada</title>
-      <link>https://jeancarlor.github.io/blog/modelo/</link>
-      <pubDate>Thu, 23 Jun 2022 21:46:50 -0300</pubDate>
-      
-      <guid>https://jeancarlor.github.io/blog/modelo/</guid>
-      <description>The main consideration is to make sure that the reference resource matches the genomic build of your VCF. i.e. make sure you are using GRCh37 resources for a GRCh37 aligned VCF, or GRCh38 resources for a GRCh38 aligned VCF.
-dbSNP A vcf from dbSNP can be used to annotate rsIDs into the ID column of a vcf. For instance the dbSNP v151 VCF can be downloaded here ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/ - one key thing is make sure that you use the same genome build as your VCF that you want to annotate.</description>
-    </item>
-    
+    <language>en-us</language><atom:link href="https://jeancarlor.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Privacy Policy</title>
       <link>https://jeancarlor.github.io/policy/</link>
